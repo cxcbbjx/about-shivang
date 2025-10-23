@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "framework": "vite",
+  "buildCommand": "npm run build --force",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/(.*)", "destination": "/index.html", "statusCode": 200 }
+  ]
+}
