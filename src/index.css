@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+@keyframes flow-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-flow-gradient {
+  background-size: 300% 300%;
+  animation: flow-gradient 8s ease-in-out infinite;
+}
+@keyframes flow-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-flow-gradient {
+  background-size: 300% 300%;
+  animation: flow-gradient 8s ease-in-out infinite;
+}
+
+@keyframes soundwave {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.animate-soundwave {
+  background: linear-gradient(90deg, transparent 0%, #a78bfa 25%, transparent 50%, #9333ea 75%, transparent 100%);
+  background-size: 200% 100%;
+  animation: soundwave 2.5s linear infinite;
+}
+
+:root.light {
+  --bg: #f5f5f5;
+  --text: #111;
+}
+:root.light body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 10s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 10s ease-in-out infinite;
+}
+
