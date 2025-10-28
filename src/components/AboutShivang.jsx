@@ -1,185 +1,173 @@
-// src/components/AboutShivang.jsx
-import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import FloatingParticles from "./FloatingParticles";
-import ContactSection from "./ContactSection";
+import { Link } from "react-router-dom";
 
 export default function AboutShivang() {
-  useEffect(() => {
-    // Inject Spline viewer script
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src =
-      "https://unpkg.com/@splinetool/viewer@1.10.85/build/spline-viewer.js";
-    document.body.appendChild(script);
-
-    // Parallax motion effect for Spline scene
-    const container = document.getElementById("spline-container");
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      const offsetX = (e.clientX / innerWidth - 0.5) * 30;
-      const offsetY = (e.clientY / innerHeight - 0.5) * 30;
-      container.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1.02)`;
-    };
-    const reset = () =>
-      (container.style.transform = "translate(0px,0px) scale(1)");
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", reset);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", reset);
-    };
-  }, []);
-
-  const projects = [
-    {
-      title: "Sketchify",
-      desc: "AI-powered pencil-style sketch generator — realistic, hand-drawn sketches from photos.",
-      tags: ["AI", "Node.js", "React", "Art"],
-      link: "https://euphonious-crepe-b41389.netlify.app/",
-    },
-    {
-      title: "Pulse",
-      desc: "A home for new artists who want to showcase their talent.",
-      tags: ["Creative Coding", "Audio React", "Video React"],
-      link: "https://pulse-b.netlify.app/",
-    },
-  ];
-
   return (
-    <div className="relative overflow-hidden min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-100">
-      {/* ✨ Floating background particles */}
-      <FloatingParticles count={60} />
+    <div className="min-h-screen bg-gradient-to-b from-[#02020a] via-[#08081a] to-[#02020a] text-white relative overflow-hidden">
 
-      {/* 🌌 Spline 3D Background */}
-      <div
-        id="spline-container"
-        className="absolute inset-0 -z-10 opacity-90 transition-transform duration-500"
-      >
-        <spline-viewer
-          url="https://prod.spline.design/mnA88ZvSa0nH7p9Y/scene.splinecode"
-          style={{ width: "100%", height: "100%", border: "none" }}
-        ></spline-viewer>
+      {/* ✨ Background gradient glow */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-[-200px] left-[-150px] w-[600px] h-[600px] bg-purple-800/30 rounded-full blur-[200px]" />
+        <div className="absolute bottom-[-150px] right-[-100px] w-[500px] h-[500px] bg-pink-600/30 rounded-full blur-[180px]" />
       </div>
 
-      {/* 🌓 Theme Toggle Button */}
-      <button
-        onClick={() => document.documentElement.classList.toggle("light")}
-        className="absolute top-6 right-6 z-20 px-4 py-2 rounded-xl bg-white/10 text-sm text-slate-300 hover:bg-white/20 transition"
-      >
-        Toggle Mode
-      </button>
+      {/* 🌠 Hero Section */}
+      <section className="flex flex-col md:flex-row items-center justify-center min-h-[90vh] px-6 md:px-16 text-center md:text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="flex flex-col items-center md:items-start max-w-2xl"
+        >
+          <h1 className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-[0_0_25px_rgba(147,51,234,0.6)]">
+            Hi, I'm Shivang
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed">
+            A passionate developer, dreamer, and creator of digital art — blending math,
+            AI, and music into expressive visual experiences.
+          </p>
 
-      {/* 🦋 Hero Section */}
-<section className="flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-12 px-6 pt-32 md:pt-40 relative max-w-6xl mx-auto">
-  {/* 🖼️ Shivang’s Image */}
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1 }}
-    className="relative md:w-1/2 flex justify-center"
-  >
-    <div className="relative group">
-      <img
-        src="/your-image.jpg" // <-- replace this with your actual image path
-        alt="Shivang"
-        className="w-72 h-72 md:w-80 md:h-80 object-cover rounded-3xl border-2 border-white/20 shadow-[0_0_40px_rgba(147,51,234,0.4)] transition-transform duration-700 group-hover:scale-105 group-hover:shadow-[0_0_60px_rgba(236,72,153,0.6)]"
-      />
-      {/* Glowing circle backdrop */}
-      <div className="absolute -inset-5 rounded-full bg-gradient-to-r from-purple-600/40 to-pink-500/30 blur-3xl opacity-60 group-hover:opacity-80 transition-all"></div>
-    </div>
-  </motion.div>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              to="/journey"
+              className="px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-medium rounded-xl shadow-lg hover:scale-105 transition-transform"
+            >
+              Explore My Journey
+            </Link>
+            <Link
+              to="/her"
+              className="px-6 py-3 bg-transparent border border-purple-400/50 hover:bg-purple-500/20 rounded-xl text-slate-300 font-medium transition-all"
+            >
+              Know About Her
+            </Link>
+          </div>
+        </motion.div>
 
-  {/* 🌈 Text Section */}
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1 }}
-    className="md:w-1/2 relative z-10"
-  >
-    <div className="absolute -inset-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-30 blur-3xl rounded-full animate-flow-gradient"></div>
+        {/* 🖼️ Profile Photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.3, ease: "easeOut" }}
+          className="mt-12 md:mt-0 md:ml-16"
+        >
+          <img
+            src="/images/shivang.jpeg"
+            alt="Shivang"
+            className="rounded-3xl shadow-[0_0_60px_rgba(147,51,234,0.4)] w-[260px] md:w-[300px]"
+          />
+        </motion.div>
+      </section>
 
-    <h1
-      className="relative text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text
-       bg-[length:400%_400%] bg-gradient-to-r 
-       from-[#6EE7B7] via-[#3B82F6] via-[#9333EA] to-[#F59E0B]
-       animate-flow-gradient drop-shadow-[0_0_20px_rgba(147,51,234,0.6)] font-[Orbitron]"
-      style={{ fontFamily: "'Orbitron', sans-serif" }}
-    >
-      Hi, I’m Shivang
-    </h1>
-
-    <p className="text-slate-300 mt-6 text-lg leading-relaxed">
-      A passionate developer, dreamer, and creator of digital art — blending
-      math, AI, and music into expressive visual experiences.
-    </p>
-
-    <div className="mt-8 flex gap-4 justify-center md:justify-start">
-      <a
-        href="#projects"
-        className="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-105 transition-transform"
-      >
-        Explore My Work
-      </a>
-      <a
-        href="#contact"
-        className="px-6 py-3 rounded-xl border border-white/30 hover:bg-white/10 transition-all"
-      >
-        Connect
-      </a>
-    </div>
-  </motion.div>
-</section>
-
-
-      {/* 💼 Projects Section */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-32">
-        <h2 className="text-4xl font-bold text-center mb-14">
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 text-transparent bg-clip-text">
-            Selected Projects
-          </span>
+      {/* 🚀 Projects Section */}
+      <section className="px-8 md:px-20 py-24">
+        <h2 className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-16">
+          Selected Projects
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((proj, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg hover:bg-white/10 overflow-hidden"
-            >
-              {proj.title === "Pulse" && (
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] animate-soundwave opacity-50"></div>
-              )}
-              <h3 className="font-semibold text-2xl mb-2">{proj.title}</h3>
-              <p className="text-slate-300 text-sm mb-4">{proj.desc}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {proj.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs bg-white/10 px-3 py-1 rounded-full text-slate-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={proj.link}
-                target="_blank"
-                rel="noreferrer"
-                className="text-indigo-400 hover:text-indigo-300 text-sm font-medium"
-              >
-                View Project →
-              </a>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          <ProjectCard
+            title="Sketchify"
+            description="AI-powered pencil-style sketch generator — transforming images into hand-drawn sketches using artistic intelligence."
+            link="https://euphonious-crepe-b41389.netlify.app/"
+          />
+          <ProjectCard
+            title="Pulse"
+            description="A creative home for artists to share their songs and showcase their skills."
+            link="https://pulse-b.netlify.app/"
+          />
         </div>
       </section>
 
-      {/* 💌 Contact Section */}
-      <ContactSection />
+      {/* 🧠 Research Section */}
+      <section className="px-8 md:px-20 py-20 bg-gradient-to-t from-[#0a0115] via-[#0b0012] to-[#06010d] text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"
+        >
+          My Research Work
+        </motion.h2>
+
+        <p className="mt-6 text-slate-400 max-w-2xl mx-auto">
+          Exploring Artistic Intelligence — where deep learning meets creativity.
+          A study that transforms photographs into expressive, hand-drawn sketches.
+        </p>
+
+        <Link
+          to="/research"
+          className="mt-8 inline-block px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl font-semibold text-white hover:scale-105 transition-transform shadow-lg"
+        >
+          🔬 View My Research
+        </Link>
+      </section>
+
+      {/* 💬 Get In Touch */}
+      <section className="py-24 text-center px-8 md:px-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400 mb-6">
+          Get in Touch
+        </h2>
+        <p className="text-slate-400 max-w-xl mx-auto mb-8">
+          Let’s build something beautiful together — whether it’s code, music, or art.
+        </p>
+
+        <div className="flex justify-center gap-6 flex-wrap">
+          <a
+            href="mailto:shivangsagar529@gmail.com"
+            className="px-5 py-3 border border-purple-500 rounded-xl hover:bg-purple-500/20 transition-all"
+          >
+            ✉️ Email
+          </a>
+          <a
+            href="https://github.com/cxcbbjx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 border border-indigo-500 rounded-xl hover:bg-indigo-500/20 transition-all"
+          >
+            💻 GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/shivang-sagar-264249314/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 border border-pink-500 rounded-xl hover:bg-pink-500/20 transition-all"
+          >
+            🔗 LinkedIn
+          </a>
+        </div>
+
+        
+      </section>
+
+      {/* 🩶 Footer */}
+      <footer className="text-center text-slate-500 text-sm py-8 border-t border-white/10">
+        © 2025 Shivang •
+      </footer>
     </div>
+  );
+}
+
+// 📦 Reusable Project Card
+function ProjectCard({ title, description, link }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+      className="bg-[#0b0b13]/60 border border-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-sm hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all"
+    >
+      <h3 className="text-2xl font-semibold text-purple-300">{title}</h3>
+      <p className="text-slate-400 mt-3 mb-5">{description}</p>
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-pink-400 hover:underline text-sm"
+        >
+          Visit Project →
+        </a>
+      )}
+    </motion.div>
   );
 }

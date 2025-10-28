@@ -79,3 +79,29 @@ body {
   animation: pulse-slow 10s ease-in-out infinite;
 }
 
+/* Fade overlay effect during transitions */
+.motion-fade-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(10, 10, 20, 0.9), rgba(0, 0, 0, 1));
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInOut 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+

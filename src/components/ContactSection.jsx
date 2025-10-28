@@ -105,7 +105,18 @@ export default function ContactSection() {
           >
             About Her
           </a>
+         
+         <a
+          href="/journey"
+          className="px-6 py-3 rounded-xl border border-white/10 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-400 text-slate-300 font-medium transition-all hover:scale-105"
+        >
+          My Journey
+        </a>
+
+        
+
         </div>
+
       </motion.div>
 
       {/* 🌙 Footer Quote */}

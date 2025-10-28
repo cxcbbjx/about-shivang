@@ -29,13 +29,34 @@ const questions = [
   },
 ];
 
+// 💫 Each image has its own poetic caption
+const galleryImages = [
+  {
+    img: "her1.jpeg",
+    caption: "“Her smile — the kind that made the world forget its noise.”",
+  },
+  {
+    img: "her2.jpeg",
+    caption: "“Her eyes — where even silence learned to dream.”",
+  },
+  {
+    img: "her3.jpeg",
+    caption: "“That moment — when time paused just to watch her breathe.”",
+  },
+  {
+    img: "her4.jpeg",
+    caption: "“Her presence felt like a poem no words could write.”",
+  },
+];
+
 export default function Her() {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
 
-  // 🕯️ Ambient piano music
+  // 🎵 Ambient piano background
   useEffect(() => {
     const audio = new Audio("/her-bg.mp3");
     audio.volume = 0.25;
+    audio.loop = true;
     audio.play().catch(() => {});
     return () => {
       audio.pause();
@@ -43,29 +64,28 @@ export default function Her() {
     };
   }, []);
 
-  // ✨ Track mouse for subtle particle motion
+  // ✨ Mouse motion for particle interaction
   useEffect(() => {
     const move = (e) => setCursor({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  // ✨ Scroll-based gradient light movement
   const { scrollYProgress } = useScroll();
   const lightY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#0a0114] text-[#f5e8ff]">
-      {/* 🌈 Cinematic moving gradient */}
+      {/* 🌈 Cinematic radial light */}
       <motion.div
         className="absolute top-0 left-1/2 w-[120vw] h-[120vh] -translate-x-1/2 bg-[radial-gradient(circle,rgba(147,51,234,0.12)_0%,transparent_70%)] blur-3xl -z-10"
         style={{ y: lightY }}
       ></motion.div>
 
-      {/* 🎞️ Vignette effect */}
+      {/* 🌑 Vignette shading */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_65%,rgba(0,0,0,0.6)_100%)] z-0"></div>
 
-      {/* 🌌 Floating Memory Particles */}
+      {/* 💫 Floating Memory Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {[...Array(30)].map((_, i) => (
           <motion.div
@@ -95,7 +115,7 @@ export default function Her() {
         ))}
       </div>
 
-      {/* 🎬 Intro */}
+      {/* 🌷 Intro line */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -107,7 +127,7 @@ export default function Her() {
         </p>
       </motion.div>
 
-      {/* 🌸 Title */}
+      {/* 💜 Title */}
       <motion.h1
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -117,7 +137,6 @@ export default function Her() {
         Her.
       </motion.h1>
 
-      {/* 💫 Sub-caption */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -127,31 +146,44 @@ export default function Her() {
         “She wasn’t a chapter. She was the entire meaning.”
       </motion.p>
 
-      {/* 🖼️ Gallery */}
+      {/* 🖼️ Her Gallery */}
       <section className="max-w-6xl mx-auto px-6 mt-24 mb-24 relative z-10">
         <h2 className="text-3xl font-semibold text-center mb-10 text-pink-400">
           Her Gallery
         </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {["her1.jpeg", "her2.jpeg", "her3.jpeg", "her4.jpeg"].map((img, i) => (
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {galleryImages.map((photo, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: i * 0.2 }}
-              className="overflow-hidden rounded-2xl shadow-lg bg-white/5 backdrop-blur-sm"
+              whileHover={{ scale: 1.05 }}
+              className="relative overflow-hidden rounded-3xl group cursor-pointer shadow-lg"
             >
+              {/* 🌸 Image */}
               <img
-                src={`/${img}`}
+                src={`/${photo.img}`}
                 alt="her"
-                className="w-full h-auto object-cover rounded-2xl"
+                className="w-full h-auto object-cover rounded-3xl transition-transform duration-500 group-hover:scale-110"
               />
+
+              {/* 💜 Glow aura behind */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-70 bg-purple-600 blur-2xl transition-all duration-700 -z-10"></div>
+
+              {/* ✨ Overlay text */}
+              <div className="absolute inset-0 flex items-center justify-center text-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <p className="text-lg md:text-xl text-pink-200 italic px-6 leading-relaxed">
+                  {photo.caption}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* 💭 Cinematic Memory Q&A */}
+      {/* 💭 Memory Q&A */}
       <section className="max-w-3xl mx-auto space-y-28 px-6 pb-40 relative z-10">
         {questions.map((item, index) => (
           <motion.div
@@ -179,7 +211,7 @@ export default function Her() {
         ))}
       </section>
 
-      {/* 🕯️ Ending Quote */}
+      {/* 🌙 Ending Quote */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -189,9 +221,7 @@ export default function Her() {
         <p className="text-slate-300 text-lg italic">
           “Some stories don’t end. They just live quietly in one heart.”
         </p>
-        <p className="text-slate-400 mt-3 text-sm">
-          — Shivang’s memories
-        </p>
+        <p className="text-slate-400 mt-3 text-sm">—lost_memories</p>
       </motion.div>
 
       {/* 🖤 Final cinematic fade */}
